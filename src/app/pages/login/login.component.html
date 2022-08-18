@@ -1,0 +1,25 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  
+  <mat-card class="box">
+    <div class="appLogo">
+      <img src="assets/images/blank_person.jpg" width="200px">
+    </div>
+    <mat-card-header>
+      <mat-card-title>Log in</mat-card-title>
+    </mat-card-header>
+
+    <form class="example-form">
+      <mat-card-content>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Username" [(ngModel)]="userName" name="Username" autocomplete="off">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Password" type="password" [(ngModel)]="password" name="Password" autocomplete="off">
+        </mat-form-field>
+      </mat-card-content>
+      <button mat-stroked-button color="accent" class="btn-block" (click)="onSubmit()">Submit</button>
+    </form>
+  </mat-card>
+
+</div>
