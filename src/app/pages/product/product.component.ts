@@ -5,22 +5,12 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Product } from 'src/app/models/product';
+import { ServerResponse } from 'src/app/models/server';
 import { Tablet } from 'src/app/models/tablet';
+import { ProductService } from 'src/app/services/product.service';
+import { TabletService } from 'src/app/services/tablet.service';
 import { getTimestampInSeconds } from 'src/app/shared/app.constant';
 import { AddProductComponent } from './add-product/add-product.component';
-
-
-const ELEMENT_DATA: Product[] = [
-  { id: 'M4S001', manufacturer: 'Nestle', category: 'Noodles', product: 'Maggi', comparison: 'Yippee', timestamp: getTimestampInSeconds(), assign_tablet: [] },
-  { id: 'M4S002', manufacturer: 'Saffola', category: 'Noodles', product: 'Oodles', comparison: 'Maggi', timestamp: getTimestampInSeconds(), assign_tablet: [] },
-  { id: 'M4S003', manufacturer: 'Sunfest', category: 'Noodles', product: 'Yippee', comparison: 'Oodles', timestamp: getTimestampInSeconds(), assign_tablet: [] },
-];
-
-const ELEMENT_DATA_TABLET: Tablet[] = [
-  { id: 'M4S001', tablet: 'T01', name: 'Raju', phone: '123', field_office: 'Yippee', team_code: '101', supervisor_code: 'Manoj', timestamp: getTimestampInSeconds(), email_id: 'abc@gmail.com', status: 'Active' },
-  { id: 'M4S001', tablet: 'T02', name: 'Manoj', phone: '321', field_office: 'Yippee', team_code: '102', supervisor_code: 'Manoj', timestamp: getTimestampInSeconds(), email_id: 'abc@gmail.com', status: 'Active' },
-  { id: 'M4S001', tablet: 'T03', name: 'Kamal', phone: '456', field_office: 'Yippee', team_code: '103', supervisor_code: 'Manoj', timestamp: getTimestampInSeconds(), email_id: 'abc@gmail.com', status: 'Active' },
-];
 
 
 @Component({
@@ -30,21 +20,45 @@ const ELEMENT_DATA_TABLET: Tablet[] = [
 })
 export class ProductComponent implements OnInit {
   displayedColumns = ['srn', 'id', 'manufacturer', 'category', 'product', 'comparison', 'timestamp', 'assign_tablet', 'actions'];
-  dataSource = ELEMENT_DATA;
+  dataSource: Product[] = [];
   index: number = 0;
   id: number = 0;
-  datasourceTablet = ELEMENT_DATA_TABLET;
+  datasourceTablet: Tablet[] = [];
   assign_tablets = new FormControl('');
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('filter') filter: ElementRef;
 
-  constructor(public dialogService: MatDialog, private _spinner: NgxSpinnerService) { }
-
+  constructor(public dialogService: MatDialog, private _spinner: NgxSpinnerService,
+    private _productService: ProductService,
+    private _tabletService: TabletService
+  ) { }
 
 
   ngOnInit() {
+    this.load();
+    this.loadTablet();
+  }
+
+  loadTablet() {
+    this.datasourceTablet = [];
+    this._tabletService.getTablet().subscribe((res: ServerResponse) => {
+      if (res.result.length > 0) {
+        this.datasourceTablet = res.result;
+      }
+    });
+  }
+
+  load() {
+    this._spinner.show();
+    this.dataSource = [];
+    this._productService.getProduct().subscribe((res: ServerResponse) => {
+      this._spinner.hide();
+      if (res.result.length > 0) {
+        this.dataSource = res.result;
+      }
+    });
   }
 
 
@@ -54,7 +68,7 @@ export class ProductComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
-        this.refreshTable();
+        this.load();
       }
     });
   }
@@ -69,12 +83,17 @@ export class ProductComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
-        this.refreshTable();
+        this.load();
       }
     });
   }
-  deleteItem(i: number, obj: any) {
 
+  deleteItem(i: number, obj: Product) {
+    this._spinner.show();
+    this._productService.deleteProduct({ id: obj._id }).subscribe((res) => {
+      this._spinner.hide();
+      this.load();
+    });
   }
 
   private refreshTable() {

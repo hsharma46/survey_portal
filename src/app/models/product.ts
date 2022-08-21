@@ -1,5 +1,6 @@
 export class Product {
-    id: string = '';
+    _id: string = '';
+    code: string = '';
     manufacturer: string = '';
     category: string = '';
     product: string = '';

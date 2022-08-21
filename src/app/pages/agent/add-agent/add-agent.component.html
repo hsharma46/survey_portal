@@ -1,0 +1,61 @@
+<div class="container">
+    <h3 mat-dialog-title>Add Agent</h3>
+  
+    <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
+  
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput  class="form-control" placeholder="Tablet" [(ngModel)]="data.tablet" name="tablet" required >
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+  
+      
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput  class="form-control" placeholder="Name" [(ngModel)]="data.name" name="name" required >
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput  class="form-control" placeholder="Phone" [(ngModel)]="data.phone" name="phone" required >
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput  class="form-control" placeholder="Field Office" [(ngModel)]="data.field_office" name="field_office" required >
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput  class="form-control" placeholder="Team Code" [(ngModel)]="data.team_code" name="team_code" required >
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput  class="form-control" placeholder="Supervisor Code" [(ngModel)]="data.supervisor_code" name="supervisor_code" required >
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput  class="form-control" placeholder="Email Id" [(ngModel)]="data.email_id" name="email_id" email required >
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+      
+  
+      <div mat-dialog-actions>
+        <button mat-raised-button color="accent" type="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
+        <button mat-raised-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+      </div>
+    </form>
+  </div>
+  

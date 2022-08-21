@@ -2,27 +2,27 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Product } from 'src/app/models/product';
+import { Agent } from 'src/app/models/agent';
 import { ServerResponse } from 'src/app/models/server';
-import { ProductService } from 'src/app/services/product.service';
+import { AgentService } from 'src/app/services/agent.service';
 import { getTimestampInSeconds } from 'src/app/shared/app.constant';
 
 @Component({
-  selector: 'app-add-product',
-  templateUrl: './add-product.component.html',
-  styleUrls: ['./add-product.component.scss']
+  selector: 'app-add-agent',
+  templateUrl: './add-agent.component.html',
+  styleUrls: ['./add-agent.component.scss']
 })
-export class AddProductComponent implements OnInit {
+export class AddAgentComponent implements OnInit {
   actionName = '';
-  constructor(public dialogRef: MatDialogRef<AddProductComponent>,
+  constructor(public dialogRef: MatDialogRef<AddAgentComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private _spinner: NgxSpinnerService, private _productService: ProductService
-  ) { }
+    private _spinner: NgxSpinnerService, private _agentService: AgentService
+    ) { }
 
 
   formControl = new FormControl('', [
-    Validators.required
-    // Validators.email,
+    Validators.required,
+    Validators.email,
   ]);
 
   ngOnInit(): void {
@@ -49,14 +49,15 @@ export class AddProductComponent implements OnInit {
       const id = this.data._id;
       delete this.data._id;
       this._spinner.show();
-      this._productService.updateProduct({ id }, this.data).subscribe((res: ServerResponse) => {
+      this.data.timestamp = getTimestampInSeconds();
+      this._agentService.updateAgent({ id }, this.data).subscribe((res: ServerResponse) => {
         this._spinner.hide();
         this.dialogRef.close(1);
       });
     } else {
       this._spinner.show();
       this.data.timestamp = getTimestampInSeconds();
-      this._productService.createProduct(this.data).subscribe((res: ServerResponse) => {
+      this._agentService.createAgent(this.data).subscribe((res: ServerResponse) => {
         this._spinner.hide();
         this.dialogRef.close(1);
       });

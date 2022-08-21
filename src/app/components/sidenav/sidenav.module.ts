@@ -11,6 +11,8 @@ import { AddProductComponent } from 'src/app/pages/product/add-product/add-produ
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TabletComponent } from 'src/app/pages/tablet/tablet.component';
 import { AddTabletComponent } from 'src/app/pages/tablet/add-tablet/add-tablet.component';
+import { AgentComponent } from 'src/app/pages/agent/agent.component';
+import { AddAgentComponent } from 'src/app/pages/agent/add-agent/add-agent.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { AddTabletComponent } from 'src/app/pages/tablet/add-tablet/add-tablet.c
     ProductComponent,
     AddProductComponent,
     TabletComponent,
-    AddTabletComponent
+    AddTabletComponent,
+    AgentComponent,
+    AddAgentComponent
   ],
   imports: [
     CommonModule,
