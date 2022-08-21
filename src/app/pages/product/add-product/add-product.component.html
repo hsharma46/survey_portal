@@ -1,0 +1,42 @@
+<div class="container">
+    <h3 mat-dialog-title>Add Product</h3>
+  
+    <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
+  
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput  class="form-control" placeholder="Manufacturer" [(ngModel)]="data.manufacturer" name="Manufacturer" required >
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+  
+      
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput  class="form-control" placeholder="Category" [(ngModel)]="data.category" name="category" required >
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput  class="form-control" placeholder="Product" [(ngModel)]="data.product" name="product" required >
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput  class="form-control" placeholder="Comparison" [(ngModel)]="data.comparison" name="comparison" required >
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+      
+  
+      <div mat-dialog-actions>
+        <button mat-raised-button color="accent" type="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
+        <button mat-raised-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+      </div>
+    </form>
+  </div>
+  

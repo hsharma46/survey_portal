@@ -1,0 +1,33 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
+        (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>Survey Portal</span>
+    <span class="toolbar-spacer"></span>
+
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" (click)="onLogout()">
+        <mat-icon>input</mat-icon>
+    </button>
+</mat-toolbar>
+<mat-sidenav-container autosize>
+    <mat-sidenav #sidenav opened mode="side">
+        <mat-nav-list>
+            <a mat-list-item [routerLink]="['dashboard']" [routerLinkActive]="['active']">
+                <mat-icon matListIcon>home</mat-icon> Home
+            </a>
+            <mat-divider></mat-divider>
+            <a mat-list-item [routerLink]="['product']" [routerLinkActive]="['active']">
+                <mat-icon matListIcon>domain</mat-icon> Product
+            </a>
+            <mat-divider></mat-divider>
+            <a mat-list-item [routerLink]="['tablet']" [routerLinkActive]="['active']">
+                <mat-icon matListIcon>tablet_android</mat-icon> Tablet
+            </a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <!-- Main content -->
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

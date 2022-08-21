@@ -31,8 +31,13 @@ export class LoginComponent implements OnInit {
     this._loginService.onLogin({ username: this.userName, password: this.password }).subscribe((res) => {
       this._spinner.hide();
       console.log(res);
-      localStorage.setItem('UserData', JSON.stringify(res.result[0]));
-      this._router.navigate(['/home']);
+      if (res.result.length > 0) {
+        localStorage.setItem('UserData', JSON.stringify(res.result[0]));
+        this._router.navigate(['/user/dashboard']);
+      } else {
+        this.openSnackBar("User not found. Contact administrator.", 'Remove')
+      }
+
     }, (err) => {
       this._spinner.hide();
     })

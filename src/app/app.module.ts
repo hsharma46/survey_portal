@@ -14,10 +14,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 
 /* Components */
 import { LoginComponent } from './pages/login/login.component';
-
-
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { HomeComponent } from './pages/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 
 
@@ -25,8 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    HomeComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
