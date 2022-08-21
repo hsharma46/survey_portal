@@ -48,6 +48,7 @@ export class AddTabletComponent implements OnInit {
     if (this.data._id !== '') {
       const id = this.data._id;
       delete this.data._id;
+      this.data.timestamp = getTimestampInSeconds();
       this._spinner.show();
       this._tabletService.updateTablet({ id }, this.data).subscribe((res: ServerResponse) => {
         this._spinner.hide();
