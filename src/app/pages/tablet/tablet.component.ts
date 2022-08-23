@@ -49,7 +49,7 @@ export class TabletComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
-        this.refreshTable();
+        this.load();
       }
     });
   }
@@ -64,7 +64,7 @@ export class TabletComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
-        this.refreshTable();
+        this.load();
       }
     });
   }

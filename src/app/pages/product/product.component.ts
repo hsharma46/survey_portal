@@ -1,7 +1,8 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSelect } from '@angular/material/select';
 import { MatSort } from '@angular/material/sort';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Product } from 'src/app/models/product';
@@ -24,11 +25,14 @@ export class ProductComponent implements OnInit {
   index: number = 0;
   id: number = 0;
   datasourceTablet: Tablet[] = [];
-  assign_tablets = new FormControl('');
+  assign_tablets: any = new FormControl('');
+  selectedDocs: any = {};
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('filter') filter: ElementRef;
+  @ViewChild('tabletSelect') tabletSelect: MatSelect;
+
 
   constructor(public dialogService: MatDialog, private _spinner: NgxSpinnerService,
     private _productService: ProductService,
@@ -100,6 +104,32 @@ export class ProductComponent implements OnInit {
     this.paginator._changePageSize(this.paginator.pageSize);
   }
 
+  onSelect(event: any, obj: Product) {
+    if (event.isUserInput) {
+      if (event.source.selected) {
+        if (!!this.selectedDocs[obj._id] && this.selectedDocs[obj._id].length > 0) {
+          this.selectedDocs[obj._id].push(event.source.value);
+        } else {
+          this.selectedDocs[obj._id] = [];
+          this.selectedDocs[obj._id].push(event.source.value);
+        }
+      } else {
+        this.selectedDocs[obj._id] = this.selectedDocs[obj._id].filter((d: any) => d !== event.source.value)
+      }
+    }
+    console.log(this.selectedDocs);
+  }
 
+  onLinkTablet(obj: Product) {
+    console.log(obj);
+    const body = this.selectedDocs[obj._id];
+    this._spinner.show();
+    this._productService.linkProductWithTablet({ id: obj._id }, body).subscribe((res: ServerResponse) => {
+      this._spinner.hide();
+      this.load();
+    }, (err) => {
+      this._spinner.hide();
+    });
+  }
 
 }

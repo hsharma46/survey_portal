@@ -38,4 +38,9 @@ export class ProductService {
     return this.http.delete(`${AppConstant.API_URL}product/delete/${id}`);
   }
 
+  linkProductWithTablet(params: any, body = {}): Observable<any> {
+    const id = params['id'];
+    return this.http.post(`${AppConstant.API_URL}product/link/${id}`, body);
+  }
+
 }

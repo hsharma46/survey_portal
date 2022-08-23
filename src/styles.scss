@@ -69,3 +69,14 @@ table {
     text-align: center;
     padding: 10px;
 }
+
+.mat-column-actions {
+    width: 80px;
+}
+
+th.mat-header-cell:last-of-type,
+td.mat-cell:last-of-type,
+td.mat-footer-cell:last-of-type {
+    padding-right: 10px !important;
+    text-align: center !important;
+}

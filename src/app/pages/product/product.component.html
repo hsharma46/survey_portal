@@ -50,14 +50,8 @@
 
         <ng-container matColumnDef="assign_tablet">
             <th mat-header-cell *matHeaderCellDef>Assign Tablet</th>
-            <td mat-cell *matCellDef="let row"> {{row.assign_tablet}}
-                <mat-form-field appearance="fill">
-                    <mat-label>Tablets</mat-label>
-                    <mat-select [formControl]="assign_tablets" multiple>
-                        <mat-option *ngFor="let item of datasourceTablet" [value]="item.name">{{item.name}}</mat-option>
-                    </mat-select>
-                </mat-form-field>
-
+            <td mat-cell *matCellDef="let row; let i=index;">
+                <ng-container *ngTemplateOutlet="tabletSelectTemplate;context: { $implicit: row }"></ng-container>
             </td>
         </ng-container>
 
@@ -92,3 +86,19 @@
         [pageSizeOptions]="[5, 10, 25, 100]">
     </mat-paginator> -->
 </div>
+
+<ng-template #tabletSelectTemplate let-row>
+    <mat-form-field appearance="fill">
+        <mat-label>Tablets</mat-label>
+        <mat-select multiple #tabletSelect>
+            <mat-option *ngFor="let item of datasourceTablet" [value]="item._id"
+                (onSelectionChange)="onSelect($event,row)">{{item.name}}</mat-option>
+            <div style="margin: 10px; float: left;">
+                <button mat-stroked-button color="accent" (click)="tabletSelect.close();">Cancel</button>
+            </div>
+            <div style="margin: 10px; float: right;">
+                <button mat-stroked-button color="primary" (click)="tabletSelect.close();onLinkTablet(row)">Save</button>
+            </div>
+        </mat-select>
+    </mat-form-field>
+</ng-template>
