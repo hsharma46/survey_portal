@@ -15,21 +15,25 @@ import { AddAgentComponent } from './add-agent/add-agent.component';
 })
 export class AgentComponent implements OnInit {
 
-  displayedColumns = ['srn', 'id', 'tablet', 'name', 'phone', 'field_office', 'team_code', 'supervisor_code', 'timestamp', 'email_id', 'status', 'actions'];
-  dataSource:Agent[] = [];
+  displayedColumns = ['srn', 'tablet', 'name', 'phone', 'field_office', 'team_code', 'supervisor_code', 'timestamp', 'email_id', 'status', 'actions'];
+  dataSource: Agent[] = [];
   index: number = 0;
   id: number = 0;
-
+  
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('filter') filter: ElementRef;
 
-  constructor(public dialogService: MatDialog,private _spinner: NgxSpinnerService, private _agentService: AgentService) { }
+  constructor(public dialogService: MatDialog, private _spinner: NgxSpinnerService, 
+    private _agentService: AgentService
+    ) { }
 
   ngOnInit() {
     this.load();
   }
+
+  
 
   load() {
     this._spinner.show();
@@ -73,6 +77,8 @@ export class AgentComponent implements OnInit {
     this._agentService.deleteAgent({ id: obj._id }).subscribe((res) => {
       this._spinner.hide();
       this.load();
+    },(err)=>{
+      this._spinner.hide();
     });
   }
 

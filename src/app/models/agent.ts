@@ -1,6 +1,6 @@
 export class Agent {
     _id: string = '';
-    code: string = '';
+    //code: string = '';
     tablet: string = '';
     name: string = '';
     phone: string = '';

@@ -2,9 +2,10 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Agent } from 'src/app/models/agent';
 import { ServerResponse } from 'src/app/models/server';
+import { Tablet } from 'src/app/models/tablet';
 import { AgentService } from 'src/app/services/agent.service';
+import { TabletService } from 'src/app/services/tablet.service';
 import { getTimestampInSeconds } from 'src/app/shared/app.constant';
 
 @Component({
@@ -14,9 +15,10 @@ import { getTimestampInSeconds } from 'src/app/shared/app.constant';
 })
 export class AddAgentComponent implements OnInit {
   actionName = '';
+  datasourceTablet: Tablet[] = [];
   constructor(public dialogRef: MatDialogRef<AddAgentComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private _spinner: NgxSpinnerService, private _agentService: AgentService
+    private _spinner: NgxSpinnerService, private _agentService: AgentService,private _tabletService: TabletService
     ) { }
 
 
@@ -27,6 +29,18 @@ export class AddAgentComponent implements OnInit {
 
   ngOnInit(): void {
     this.actionName = this.data._id !== '' ? 'Edit' : 'Add';
+    this.loadTablet();
+  }
+
+  loadTablet() {
+    this.datasourceTablet = [];
+    this._spinner.show();
+    this._tabletService.getTablet().subscribe((res: ServerResponse) => {
+      this._spinner.hide();
+      if (res.result.length > 0) {
+        this.datasourceTablet = res.result;
+      }
+    });
   }
 
   getErrorMessage() {

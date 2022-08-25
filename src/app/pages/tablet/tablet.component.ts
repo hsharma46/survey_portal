@@ -73,6 +73,8 @@ export class TabletComponent implements OnInit {
     this._tabletService.deleteTablet({ id: obj._id }).subscribe((res) => {
       this._spinner.hide();
       this.load();
+    },(err)=>{
+      this._spinner.hide();
     });
   }
 

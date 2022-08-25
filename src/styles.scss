@@ -51,14 +51,9 @@ body {
     z-index: -1;
 }
 
-.container {
+.table-container {
     display: flex;
     flex-direction: column;
-    overflow: auto;
-}
-
-.example-container {
-    height: 400px;
     overflow: auto;
 }
 
@@ -67,8 +62,8 @@ table {
     width: 100%;
 }
 
-td.mat-column-srn {
-    width: 20px;
+td.mat-column-actions {
+    min-width: 105px;
 }
 
 .product-spacer {

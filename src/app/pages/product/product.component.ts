@@ -97,6 +97,8 @@ export class ProductComponent implements OnInit {
     this._productService.deleteProduct({ id: obj._id }).subscribe((res) => {
       this._spinner.hide();
       this.load();
+    },(err)=>{
+      this._spinner.hide();
     });
   }
 
