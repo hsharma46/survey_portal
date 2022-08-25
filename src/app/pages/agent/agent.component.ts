@@ -67,7 +67,7 @@ export class AgentComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
-        this.refreshTable();
+        this.load();
       }
     });
   }
