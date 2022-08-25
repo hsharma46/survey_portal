@@ -32,7 +32,7 @@ import { AddAgentComponent } from 'src/app/pages/agent/add-agent/add-agent.compo
     SidenavRoutingModule,
     FlexLayoutModule,
     ReactiveFormsModule,
-    FormsModule,
+    FormsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 

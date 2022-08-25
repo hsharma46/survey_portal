@@ -13,7 +13,7 @@
 
         <!-- ID Column -->
 
-        <ng-container matColumnDef="srn">
+        <ng-container matColumnDef="srn" >
             <th mat-header-cell *matHeaderCellDef>Sl. No.</th>
             <td mat-cell *matCellDef="let row; let i = index;">{{i+1}}</td>
         </ng-container>
@@ -57,7 +57,7 @@
 
 
         <!-- actions -->
-        <ng-container matColumnDef="actions">
+        <ng-container matColumnDef="actions" sticky>
             <th mat-header-cell *matHeaderCellDef>
                 Actions
             </th>
@@ -90,7 +90,7 @@
 <ng-template #tabletSelectTemplate let-row>
     <mat-form-field appearance="fill">
         <mat-label>Tablets</mat-label>
-        <mat-select multiple #tabletSelect>
+        <mat-select multiple #tabletSelect [value]="row.tablets">
             <mat-option *ngFor="let item of datasourceTablet" [value]="item._id"
                 (onSelectionChange)="onSelect($event,row)">{{item.name}}</mat-option>
             <div style="margin: 10px; float: left;">

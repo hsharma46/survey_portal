@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppShared } from 'src/app/shared/app.shared';
 
 @Component({
   selector: 'app-sidenav',
@@ -8,14 +9,18 @@ import { Router } from '@angular/router';
 })
 export class SidenavComponent implements OnInit {
 
-  constructor(private _router: Router) { }
+  constructor(private _router: Router, private appShared: AppShared) { }
 
   ngOnInit(): void {
   }
 
   onLogout() {
-    localStorage.clear();
-    this._router.navigate(['/login']);
+    this.appShared.showConfirm('Are you sure you want to logout?', ['Sure', 'Cancel']).subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        localStorage.clear();
+        this._router.navigate(['/login']);
+      }
+    })
   }
 
 }

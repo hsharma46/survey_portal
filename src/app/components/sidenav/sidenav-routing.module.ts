@@ -4,6 +4,7 @@ import { AgentComponent } from 'src/app/pages/agent/agent.component';
 import { HomeComponent } from 'src/app/pages/home/home.component';
 import { ProductComponent } from 'src/app/pages/product/product.component';
 import { TabletComponent } from 'src/app/pages/tablet/tablet.component';
+import { AuthGuard } from 'src/app/services/auth-guard.service';
 import { SidenavComponent } from './sidenav.component';
 
 
@@ -11,10 +12,10 @@ const routes: Routes = [
   {
     path: 'user', component: SidenavComponent, children: [
       { path: '', pathMatch: 'full', component: HomeComponent },
-      { path: 'dashboard', component: HomeComponent },
-      { path: 'product', component: ProductComponent },
-      { path: 'agent', component: AgentComponent },
-      { path: 'tablet', component: TabletComponent }
+      { path: 'dashboard', component: HomeComponent, canActivate: [AuthGuard] },
+      { path: 'product', component: ProductComponent, canActivate: [AuthGuard] },
+      { path: 'agent', component: AgentComponent, canActivate: [AuthGuard] },
+      { path: 'tablet', component: TabletComponent, canActivate: [AuthGuard] }
     ]
   },
 
