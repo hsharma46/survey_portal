@@ -13,6 +13,10 @@ import { TabletComponent } from 'src/app/pages/tablet/tablet.component';
 import { AddTabletComponent } from 'src/app/pages/tablet/add-tablet/add-tablet.component';
 import { AgentComponent } from 'src/app/pages/agent/agent.component';
 import { AddAgentComponent } from 'src/app/pages/agent/add-agent/add-agent.component';
+import { SurveyComponent } from 'src/app/pages/survey/survey.component';
+import { AddSurveyComponent } from 'src/app/pages/survey/add-survey/add-survey.component';
+import { StartSurveyComponent } from 'src/app/pages/survey/start-survey/start-survey.component';
+import { QuestionsLoopDirective } from 'src/app/shared/directive/questions-loop.directive';
 
 
 @NgModule({
@@ -24,7 +28,11 @@ import { AddAgentComponent } from 'src/app/pages/agent/add-agent/add-agent.compo
     TabletComponent,
     AddTabletComponent,
     AgentComponent,
-    AddAgentComponent
+    AddAgentComponent,
+    SurveyComponent,
+    AddSurveyComponent,
+    StartSurveyComponent,
+    QuestionsLoopDirective
   ],
   imports: [
     CommonModule,

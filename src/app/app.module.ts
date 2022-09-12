@@ -17,6 +17,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { HttpClientModule } from '@angular/common/http';
 import { ConfirmationDialog } from './shared/dialog/confirmation-dialog.component';
+import { QuestionsLoopDirective } from './shared/directive/questions-loop.directive';
 
 
 

@@ -1,0 +1,38 @@
+<mat-toolbar color="accent"> Survey</mat-toolbar>
+<form>
+    <mat-card class="example-card" *appQuestionsLoop="let question of questions; let i = index; let c = controller">
+        <mat-card-header>
+            <mat-card-title>{{i + 1}}. {{question.question}}</mat-card-title>
+            <mat-card-subtitle>Select one of the following options</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-radio-group *ngIf="question.type === 'radio'" class="example-radio-group" name="favoriteSeason"
+                [(ngModel)]="question.answer">
+                <mat-radio-button class="example-radio-button" *ngFor="let option of question.options"
+                    [value]="option.optionText">
+                    {{option.optionText}}
+                </mat-radio-button>
+            </mat-radio-group>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-button (click)="c.prev()" [disabled]="c.isFirst()">PREVIOUS</button>
+            <button mat-raised-button (click)="submit()" color="primary" style="float:right;"
+                *ngIf="c.isLast(); else nextBtn">SUBMIT</button>
+            <ng-template #nextBtn>
+                <button mat-button style="float:right;" (click)="c.next()">NEXT</button>
+            </ng-template>
+        </mat-card-actions>
+        <!-- <mat-progress-bar mode="determinate" color="accent" [value]="percentage(i,questions.length)"></mat-progress-bar> -->
+    </mat-card>
+
+    <mat-card style="margin-top: 20px;" *ngIf="questions.length > 0">
+        <mat-list role="list">
+            <mat-list-item role="listitem" *ngFor="let question of questions">
+                {{question.question}} :
+                <span class="product-spacer"></span>
+                <span style="color: green;">{{question.answer}}</span>
+                <mat-divider></mat-divider>
+            </mat-list-item>
+
+        </mat-list>
+    </mat-card>
