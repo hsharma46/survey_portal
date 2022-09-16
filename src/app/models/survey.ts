@@ -1,8 +1,8 @@
 export class Survey {
-    _id: string = '';
+    _id?: string = '';
     questionTitle: string = '';
     questionGroup: Option[] = [];
-    timestamp: any = '';
+    timestamp: any;
 }
 
 export interface QuestionType {

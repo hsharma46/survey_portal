@@ -1,18 +1,19 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormArray, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ServerResponse } from 'src/app/models/server';
 import { QuestionType, Survey } from 'src/app/models/survey';
-import { SurveyService } from 'src/app/services/survey.service';
+import { QuestionService } from 'src/app/services/question.service';
 import { getTimestampInSeconds } from 'src/app/shared/app.constant';
 
 @Component({
-  selector: 'app-add-survey',
-  templateUrl: './add-survey.component.html',
-  styleUrls: ['./add-survey.component.scss']
+  selector: 'app-add-question',
+  templateUrl: './add-question.component.html',
+  styleUrls: ['./add-question.component.scss']
 })
-export class AddSurveyComponent implements OnInit {
+export class AddQuestionComponent implements OnInit {
+
   surveyForm: any;
 
   selectedOption: any = ['Multi choice'];
@@ -31,13 +32,13 @@ export class AddSurveyComponent implements OnInit {
     { value: 'Rating', viewValue: 'Rating' }
   ];
 
-  constructor(public dialogRef: MatDialogRef<AddSurveyComponent>,
+  constructor(public dialogRef: MatDialogRef<AddQuestionComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private _spinner: NgxSpinnerService, private _surveyService: SurveyService,
-    private fb: FormBuilder
+    private _spinner: NgxSpinnerService, private _questionService: QuestionService
   ) { }
 
   ngOnInit() {
+    console.log(this.data);
     this.initForm();
   }
 
@@ -59,8 +60,6 @@ export class AddSurveyComponent implements OnInit {
   }
 
   public confirmAdd(): void {
-    console.log(this.data);
-
     let formData = this.surveyForm.value;
     let surveyQuestions = formData.surveyQuestions;
     let optionArray = formData.surveyQuestions[0].questionGroup.options[0].optionText
@@ -71,13 +70,14 @@ export class AddSurveyComponent implements OnInit {
       let req: any = [];
       surveyQuestions.forEach((element: any) => {
         let data = new Survey();
-        data['timestamp'] = getTimestampInSeconds().toString();
+        data['timestamp'] = getTimestampInSeconds();
         data.questionGroup = element.questionGroup;
         data.questionTitle = element.questionTitle;
-        data._id = getTimestampInSeconds().toString();
+        data._id = this.data._id;
+        delete data._id;
         req.push(data);
       });
-      this._surveyService.createSurvey(req).subscribe((res: ServerResponse) => {
+      this._questionService.updateQuestion({ id: this.data._id }, req[0]).subscribe((res: ServerResponse) => {
         this._spinner.hide();
         this.dialogRef.close(1);
       });
@@ -86,13 +86,12 @@ export class AddSurveyComponent implements OnInit {
       let req: any = [];
       surveyQuestions.forEach((element: any) => {
         let data = new Survey();
-        data['timestamp'] = getTimestampInSeconds().toString();
+        data['timestamp'] = getTimestampInSeconds();
         data.questionGroup = element.questionGroup;
         data.questionTitle = element.questionTitle;
-        data._id = getTimestampInSeconds().toString();
         req.push(data);
       });
-      this._surveyService.createSurvey(req).subscribe((res: ServerResponse) => {
+      this._questionService.createQuestion(req).subscribe((res: ServerResponse) => {
         this._spinner.hide();
         this.dialogRef.close(1);
       });

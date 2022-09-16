@@ -5,16 +5,16 @@ import { MatSort } from '@angular/material/sort';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ServerResponse } from 'src/app/models/server';
 import { Survey } from 'src/app/models/survey';
-import { SurveyService } from 'src/app/services/survey.service';
+import { QuestionService } from 'src/app/services/question.service';
 import { AppStorage } from 'src/app/shared/app.storage';
-import { AddSurveyComponent } from './add-survey/add-survey.component';
+import { AddQuestionComponent } from './add-question/add-question.component';
 
 @Component({
-  selector: 'app-survey',
-  templateUrl: './survey.component.html',
-  styleUrls: ['./survey.component.scss']
+  selector: 'app-question',
+  templateUrl: './question.component.html',
+  styleUrls: ['./question.component.scss']
 })
-export class SurveyComponent implements OnInit {
+export class QuestionComponent implements OnInit {
 
   displayedColumns = ['srn', 'question', 'actions'];
   dataSource: Survey[] = [];
@@ -27,7 +27,7 @@ export class SurveyComponent implements OnInit {
   @ViewChild('filter') filter: ElementRef;
 
   constructor(public dialogService: MatDialog, private _spinner: NgxSpinnerService,
-    private _surveyService: SurveyService
+    private _questionService: QuestionService
   ) { }
 
   ngOnInit() {
@@ -37,21 +37,16 @@ export class SurveyComponent implements OnInit {
   load() {
     this._spinner.show();
     this.dataSource = [];
-    this._surveyService.getSurvey().subscribe((res: ServerResponse) => {
+    this._questionService.getQuestion().subscribe((res: ServerResponse) => {
       this._spinner.hide();
       if (res.result.length > 0) {
-        let lData = AppStorage.getItem('surveyQuestions') || [];
-        if (lData.length < 3) {
-          AppStorage.setItem('surveyQuestions', res.result.concat(lData));
-        }
-        this.dataSource = res.result.concat(lData);
-        console.log(res.result, lData);
+        this.dataSource = res.result;
       }
     });
   }
 
   openAddDialog() {
-    const dialogRef = this.dialogService.open(AddSurveyComponent, {
+    const dialogRef = this.dialogService.open(AddQuestionComponent, {
       data: new Survey()
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -62,7 +57,7 @@ export class SurveyComponent implements OnInit {
   }
 
   startEdit(i: number, obj: Survey) {
-    const dialogRef = this.dialogService.open(AddSurveyComponent, {
+    const dialogRef = this.dialogService.open(AddQuestionComponent, {
       data: obj
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -74,7 +69,7 @@ export class SurveyComponent implements OnInit {
 
   deleteItem(i: number, obj: Survey) {
     this._spinner.show();
-    this._surveyService.deleteSurvey({ id: obj._id }).subscribe((res) => {
+    this._questionService.deleteQuestion({ id: obj._id }).subscribe((res) => {
       this._spinner.hide();
       this.load();
     }, (err) => {
