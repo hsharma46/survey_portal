@@ -1,5 +1,11 @@
-<mat-toolbar color="accent"> Survey</mat-toolbar>
-<form>
+<mat-toolbar color="accent">Survey</mat-toolbar>
+
+
+<ng-container *ngIf="isSurveyStart==false; else surveytemplate">
+    <app-user-registration (registrationFormSubmit)="onRegistrationFormSubmit($event)"></app-user-registration>
+</ng-container>
+
+<ng-template #surveytemplate>
     <mat-card class="example-card" *appQuestionsLoop="let question of questions; let i = index; let c = controller">
         <mat-card-header>
             <mat-card-title>{{i + 1}}. {{question.question}}</mat-card-title>
@@ -36,3 +42,4 @@
 
         </mat-list>
     </mat-card>
+</ng-template>

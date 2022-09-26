@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ServerResponse } from 'src/app/models/server';
+import { RegistrationDetails, SurveyComplete } from 'src/app/models/survey';
 import { QuestionService } from 'src/app/services/question.service';
+import { AppStorage } from 'src/app/shared/app.storage';
 
 
 @Component({
@@ -11,7 +13,9 @@ import { QuestionService } from 'src/app/services/question.service';
 })
 export class StartSurveyComponent implements OnInit {
 
+
   questions: any[] = [];
+  isSurveyStart = false;
 
   constructor(private _spinner: NgxSpinnerService, private _questionService: QuestionService) { }
 
@@ -30,7 +34,10 @@ export class StartSurveyComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.questions);
+    let surveyComplete = new SurveyComplete();
+    surveyComplete.userDetails = AppStorage.getItem('SuerveyRegistrationDetails');
+    surveyComplete.surveyDetails = this.questions;
+    console.log(surveyComplete);
   }
 
   percentage(index: any, total: any) {
@@ -50,4 +57,13 @@ export class StartSurveyComponent implements OnInit {
     })
     return transformQuestion;
   }
+
+
+  onRegistrationFormSubmit(val: RegistrationDetails) {
+    if (!!val) {
+      AppStorage.setItem('SuerveyRegistrationDetails', val);
+      this.isSurveyStart = true;
+    }
+  }
+
 }

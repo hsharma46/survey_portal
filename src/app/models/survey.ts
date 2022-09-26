@@ -14,3 +14,25 @@ export class Option {
     _id: number;
     optionText: string;
 }
+
+export class RegistrationDetails {
+    firstName: string;
+    lastName: string;
+    address: string;
+    city: string;
+    state: string;
+    userEmail: string;
+}
+
+export class SurveyAnswer {
+    "_id": string;
+    "question": string;
+    "options": [];
+    "type": string;
+    "answer": string;
+}
+
+export class SurveyComplete {
+    userDetails: RegistrationDetails;
+    surveyDetails: SurveyAnswer[];
+}

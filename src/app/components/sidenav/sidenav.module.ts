@@ -17,6 +17,7 @@ import { StartSurveyComponent } from 'src/app/pages/survey/start-survey/start-su
 import { QuestionsLoopDirective } from 'src/app/shared/directive/questions-loop.directive';
 import { QuestionComponent } from 'src/app/pages/question/question.component';
 import { AddQuestionComponent } from 'src/app/pages/question/add-question/add-question.component';
+import { UserRegistrationComponent } from 'src/app/pages/survey/user-registration/user-registration.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { AddQuestionComponent } from 'src/app/pages/question/add-question/add-qu
     QuestionComponent,
     AddQuestionComponent,
     StartSurveyComponent,
-    QuestionsLoopDirective
+    QuestionsLoopDirective,
+    UserRegistrationComponent
   ],
   imports: [
     CommonModule,
