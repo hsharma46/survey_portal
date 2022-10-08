@@ -1,4 +1,11 @@
-<mat-toolbar color="accent">Survey</mat-toolbar>
+<mat-toolbar color="accent">
+    <span>Survey</span>
+    <span class="product-spacer"></span>
+    
+    <button mat-button (click)="onBack()">
+        <mat-icon>list</mat-icon>  Survey List
+    </button>
+</mat-toolbar>
 
 
 <ng-container *ngIf="isSurveyStart==false; else surveytemplate">

@@ -16,12 +16,12 @@ export class Option {
 }
 
 export class RegistrationDetails {
-    firstName: string;
-    lastName: string;
-    address: string;
-    city: string;
-    state: string;
-    userEmail: string;
+    firstName: string = "";
+    lastName: string = "";
+    address: string = "";
+    city: string = "";
+    state: string = "";
+    userEmail: string = "";
 }
 
 export class SurveyAnswer {
@@ -35,4 +35,11 @@ export class SurveyAnswer {
 export class SurveyComplete {
     userDetails: RegistrationDetails;
     surveyDetails: SurveyAnswer[];
+    agentId: string;
+}
+
+export class SurveyList {
+    _id: string = '';
+    user: string = '';
+    agent: string = "";
 }

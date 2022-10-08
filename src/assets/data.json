@@ -2,103 +2,24 @@
     "result": [
         {
             "_id": "sasadsadsad8989",
-            "questionTitle": "When was the Civil War?",
-            "questionGroup": {
-                "options": [
-                    {
-                        "_id": "aaasadsadsad8989",
-                        "optionText": "1750-1800"
-                    },
-                    {
-                        "_id": "baasadsadsad8989",
-                        "optionText": "1800-1850"
-                    },
-                    {
-                        "_id": "caasadsadsad8989",
-                        "optionText": "1850-1900"
-                    },
-                    {
-                        "_id": "daasadsadsad8989",
-                        "optionText": "1900-1950"
-                    },
-                    {
-                        "_id": "daasadsadsad8989",
-                        "optionText": "after 1950"
-                    }
-                ]
-            }
+            "user":"John",
+            "agent":"Agent 1"
         },
         {
-            "_id": "e4sasadsadsad8989",
-            "questionTitle": "Who said 'Give me liberty or give me death?'",
-            "questionGroup": {
-                "options": [
-                    {
-                        "_id": "aaasadsadsad8989",
-                        "optionText": "John Hancock"
-                    },
-                    {
-                        "_id": "baasadsadsad8989",
-                        "optionText": "James Madison"
-                    },
-                    {
-                        "_id": "caasadsadsad8989",
-                        "optionText": "Patrick Henry"
-                    },
-                    {
-                        "_id": "daasadsadsad8989",
-                        "optionText": "Samuel Adams"
-                    }
-                ]
-            }
+            "_id": "sasadsadsad8989",
+            "user":"John",
+            "agent":"Agent 1"
         },
         {
-            "_id": "e5sasadsadsad8989",
-            "questionTitle": "On the scale of 1 to 10, what would you rate this course?",
-            "questionGroup": {
-                "options": [
-                    {
-                        "_id": "aaasadsadsad8989",
-                        "optionText": "1"
-                    },
-                    {
-                        "_id": "baasadsadsad8989",
-                        "optionText": "2"
-                    },
-                    {
-                        "_id": "caasadsadsad8989",
-                        "optionText": "3"
-                    },
-                    {
-                        "_id": "daasadsadsad8989",
-                        "optionText": "4"
-                    }
-                ]
-            }
+            "_id": "sasadsadsad8989",
+            "user":"John",
+            "agent":"Agent 1"
         },
         {
-            "_id": "e5sasadsadsad8989",
-            "questionTitle": "What do you like the most about this course?",
-            "questionGroup": {
-                "options": [
-                    {
-                        "_id": "aaasadsadsad8989",
-                        "optionText": "1"
-                    },
-                    {
-                        "_id": "baasadsadsad8989",
-                        "optionText": "2"
-                    },
-                    {
-                        "_id": "caasadsadsad8989",
-                        "optionText": "3"
-                    },
-                    {
-                        "_id": "daasadsadsad8989",
-                        "optionText": "4"
-                    }
-                ]
-            }
-        }  
+            "_id": "sasadsadsad8989",
+            "user":"John",
+            "agent":"Agent 1"
+        }
+        
     ]
 }

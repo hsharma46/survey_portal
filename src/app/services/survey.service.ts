@@ -21,6 +21,10 @@ export class SurveyService {
     //return this.http.get(`${AppConstant.API_URL}survey/getall`, { params });
     return this.http.get('assets/data.json'); 
   }
+  getSurveyDetails(params = {}): Observable<any> {
+    //return this.http.get(`${AppConstant.API_URL}survey/getall`, { params });
+    return this.http.get('assets/survey.json'); 
+  }
 
   createSurvey(body = {}): Observable<any> {
     //return this.http.post(`${AppConstant.API_URL}agent/create`, body);

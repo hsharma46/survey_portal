@@ -5,6 +5,7 @@ import { HomeComponent } from 'src/app/pages/home/home.component';
 import { ProductComponent } from 'src/app/pages/product/product.component';
 import { QuestionComponent } from 'src/app/pages/question/question.component';
 import { StartSurveyComponent } from 'src/app/pages/survey/start-survey/start-survey.component';
+import { SurveyListComponent } from 'src/app/pages/survey/survey-list/survey-list.component';
 import { TabletComponent } from 'src/app/pages/tablet/tablet.component';
 import { AuthGuard } from 'src/app/services/auth-guard.service';
 import { SidenavComponent } from './sidenav.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
       { path: 'tablet', component: TabletComponent, canActivate: [AuthGuard] },
       { path: 'question', component: QuestionComponent, canActivate: [AuthGuard] },
       { path: 'survey', component: StartSurveyComponent, canActivate: [AuthGuard] },
+      { path: 'survey-list', component: SurveyListComponent, canActivate: [AuthGuard] },
 
     ]
   },

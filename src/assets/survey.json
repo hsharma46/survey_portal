@@ -1,0 +1,103 @@
+{
+    "result": [
+        {
+            "userDetails": {
+                "firstName": "vikas",
+                "lastName": "gupta",
+                "address": "abc nagar , kanpur , 208012",
+                "city": "kanpur",
+                "state": "uttar pardesh",
+                "userEmail": "vik@gmail.com"
+            },
+            "surveyDetails": [
+                {
+                    "_id": "632411b5ad29459c1755da85",
+                    "question": "What do you like the most about this course?",
+                    "options": [
+                        {
+                            "optionText": "1"
+                        },
+                        {
+                            "optionText": "2"
+                        },
+                        {
+                            "optionText": "3"
+                        },
+                        {
+                            "optionText": "4"
+                        }
+                    ],
+                    "type": "radio",
+                    "answer": "1"
+                },
+                {
+                    "_id": "632411b5ad29459c1755da84",
+                    "question": "On the scale of 1 to 10, what would you rate this course?",
+                    "options": [
+                        {
+                            "optionText": "1"
+                        },
+                        {
+                            "optionText": "2"
+                        },
+                        {
+                            "optionText": "3"
+                        },
+                        {
+                            "optionText": "4"
+                        },
+                        {
+                            "optionText": "5"
+                        }
+                    ],
+                    "type": "radio",
+                    "answer": "1"
+                },
+                {
+                    "_id": "632411b5ad29459c1755da83",
+                    "question": "Who said 'Give me liberty or give me death?'",
+                    "options": [
+                        {
+                            "optionText": "John Hancock"
+                        },
+                        {
+                            "optionText": "James Madison"
+                        },
+                        {
+                            "optionText": "Patrick Henry"
+                        },
+                        {
+                            "optionText": "Samuel Adams"
+                        }
+                    ],
+                    "type": "radio",
+                    "answer": "John Hancock"
+                },
+                {
+                    "_id": "632411b5ad29459c1755da82",
+                    "question": "When was the Civil War?",
+                    "options": [
+                        {
+                            "optionText": "1750-1800"
+                        },
+                        {
+                            "optionText": "1800-1850"
+                        },
+                        {
+                            "optionText": "1850-1900"
+                        },
+                        {
+                            "optionText": "1900-1950"
+                        },
+                        {
+                            "optionText": "after 1950"
+                        }
+                    ],
+                    "type": "radio",
+                    "answer": "1800-1850"
+                }
+            ],
+            "agentId": "62d95996426b00084440db76"
+        }
+    ]
+}

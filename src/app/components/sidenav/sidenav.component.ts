@@ -9,9 +9,11 @@ import { AppShared } from 'src/app/shared/app.shared';
 })
 export class SidenavComponent implements OnInit {
 
-  constructor(private _router: Router, private appShared: AppShared) { }
+  constructor(public _router: Router, private appShared: AppShared) { }
 
   ngOnInit(): void {
+    this._router.url
+    console.log(this._router.url.split('/')[2]);
   }
 
   onLogout() {
@@ -22,5 +24,17 @@ export class SidenavComponent implements OnInit {
       }
     })
   }
+
+  getURL(router: any) {
+    let route = 'survey';
+    if (router == 'survey-list') {
+      route = 'survey-list';
+    } else {
+      route = 'survey'
+    }
+    return route;
+  }
+
+
 
 }

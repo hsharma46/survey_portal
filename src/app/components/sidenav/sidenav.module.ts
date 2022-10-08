@@ -18,6 +18,8 @@ import { QuestionsLoopDirective } from 'src/app/shared/directive/questions-loop.
 import { QuestionComponent } from 'src/app/pages/question/question.component';
 import { AddQuestionComponent } from 'src/app/pages/question/add-question/add-question.component';
 import { UserRegistrationComponent } from 'src/app/pages/survey/user-registration/user-registration.component';
+import { SurveyListComponent } from 'src/app/pages/survey/survey-list/survey-list.component';
+import { SurveyViewComponent } from 'src/app/pages/survey/survey-view/survey-view.component';
 
 
 @NgModule({
@@ -33,6 +35,8 @@ import { UserRegistrationComponent } from 'src/app/pages/survey/user-registratio
     QuestionComponent,
     AddQuestionComponent,
     StartSurveyComponent,
+    SurveyListComponent,
+    SurveyViewComponent,
     QuestionsLoopDirective,
     UserRegistrationComponent
   ],

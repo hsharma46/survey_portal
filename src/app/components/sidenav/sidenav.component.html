@@ -33,7 +33,7 @@
                 <mat-icon matListIcon>library_books</mat-icon> Question
             </a>
             <mat-divider></mat-divider>
-            <a mat-list-item [routerLink]="['survey']" [routerLinkActive]="['active']">
+            <a mat-list-item [routerLink]="[getURL(_router.url.split('/')[2])]" [routerLinkActive]="['active']">
                 <mat-icon matListIcon>queue</mat-icon> Survey
             </a>
         </mat-nav-list>
