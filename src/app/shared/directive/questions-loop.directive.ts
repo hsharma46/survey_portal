@@ -10,6 +10,7 @@ export interface QuestionsLoopContext {
         prev: () => void;
         isLast: () => void;
         isFirst: () => void;
+        isAnswer: () => void;
         index: number;
     };
     index: number;
@@ -19,7 +20,7 @@ export interface QuestionsLoopContext {
     selector: '[appQuestionsLoop]'
 })
 export class QuestionsLoopDirective implements OnChanges {
-    @Input() appQuestionsLoopOf: Object[] = [];
+    @Input() appQuestionsLoopOf: any[] = [];
     @Input() appQuestionsLoopForm: FormGroup;
 
     @Input() appQuestionsLoopSubmit: Function;
@@ -40,6 +41,7 @@ export class QuestionsLoopDirective implements OnChanges {
                 prev: this.prev.bind(this),
                 isLast: this.isLast.bind(this),
                 isFirst: this.isFirst.bind(this),
+                isAnswer: this.isAnswer.bind(this),
                 index: item,
             },
             index: item,
@@ -71,7 +73,6 @@ export class QuestionsLoopDirective implements OnChanges {
         if (this.index >= this.appQuestionsLoopOf.length) {
             this.index = 0;
         }
-
         this.pages.push(this.index);
         this.context.$implicit = this.appQuestionsLoopOf[this.index];
         this.context.controller.index = this.index;
@@ -93,5 +94,9 @@ export class QuestionsLoopDirective implements OnChanges {
 
     isFirst() {
         return this.index === 0;
+    }
+
+    isAnswer() {
+        return this.appQuestionsLoopOf[this.index]['answer'] == "";
     }
 }

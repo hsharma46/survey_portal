@@ -25,7 +25,7 @@
             <button mat-raised-button (click)="submit()" color="primary" style="float:right;"
                 *ngIf="c.isLast(); else nextBtn">SUBMIT</button>
             <ng-template #nextBtn>
-                <button mat-button style="float:right;" (click)="c.next()">NEXT</button>
+                <button mat-button style="float:right;" [disabled]="c.isAnswer()" (click)="c.next()">NEXT</button>
             </ng-template>
         </mat-card-actions>
         <!-- <mat-progress-bar mode="determinate" color="accent" [value]="percentage(i,questions.length)"></mat-progress-bar> -->
