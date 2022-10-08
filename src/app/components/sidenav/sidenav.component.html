@@ -32,6 +32,14 @@
             <a mat-list-item [routerLink]="['question']" [routerLinkActive]="['active']">
                 <mat-icon matListIcon>library_books</mat-icon> Question
             </a>
+            <!-- <mat-divider></mat-divider>
+            <a mat-list-item [routerLink]="['mq-question']" [routerLinkActive]="['active']">
+                <mat-icon matListIcon>library_books</mat-icon> MQ Question
+            </a> -->
+            <mat-divider></mat-divider>
+            <a mat-list-item [routerLink]="['answer']" [routerLinkActive]="['active']">
+                <mat-icon matListIcon>question_answer</mat-icon> Answer
+            </a>
             <mat-divider></mat-divider>
             <a mat-list-item [routerLink]="[getURL(_router.url.split('/')[2])]" [routerLinkActive]="['active']">
                 <mat-icon matListIcon>queue</mat-icon> Survey

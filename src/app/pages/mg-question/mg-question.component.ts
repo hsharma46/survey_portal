@@ -2,22 +2,21 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ServerResponse } from 'src/app/models/server';
-import { SurveyList } from 'src/app/models/survey';
-import { SurveyService } from 'src/app/services/survey.service';
-import { SurveyViewComponent } from '../survey-view/survey-view.component';
+import { Survey } from 'src/app/models/survey';
+import { QuestionService } from 'src/app/services/question.service';
+import { AddMgQuestionComponent } from './add-mg-question/add-mg-question.component';
 
 @Component({
-  selector: 'app-survey-list',
-  templateUrl: './survey-list.component.html',
-  styleUrls: ['./survey-list.component.scss']
+  selector: 'app-mg-question',
+  templateUrl: './mg-question.component.html',
+  styleUrls: ['./mg-question.component.scss']
 })
-export class SurveyListComponent implements OnInit {
+export class MgQuestionComponent implements OnInit {
 
-  displayedColumns = ['srn', 'user', 'agent', 'actions'];
-  dataSource: SurveyList[] = [];
+  displayedColumns = ['srn', 'question', 'actions'];
+  dataSource: Survey[] = [];
   index: number = 0;
   id: number = 0;
 
@@ -27,7 +26,7 @@ export class SurveyListComponent implements OnInit {
   @ViewChild('filter') filter: ElementRef;
 
   constructor(public dialogService: MatDialog, private _spinner: NgxSpinnerService,
-    private _surveyService: SurveyService, private router: Router
+    private _questionService: QuestionService
   ) { }
 
   ngOnInit() {
@@ -37,24 +36,17 @@ export class SurveyListComponent implements OnInit {
   load() {
     this._spinner.show();
     this.dataSource = [];
-    this._surveyService.getSurvey().subscribe((res: ServerResponse) => {
+    this._questionService.getQuestion().subscribe((res: ServerResponse) => {
       this._spinner.hide();
       if (res.result.length > 0) {
         this.dataSource = res.result;
       }
-    }, () => {
-      this._spinner.hide();
     });
   }
 
   openAddDialog() {
-    this.router.navigateByUrl('user/survey');
-  }
-
-  startEdit(i: number, obj: SurveyList) {
-    const dialogRef = this.dialogService.open(SurveyViewComponent, {
-      data: obj,
-      width: '800px'
+    const dialogRef = this.dialogService.open(AddMgQuestionComponent, {
+      data: new Survey()
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
@@ -63,9 +55,20 @@ export class SurveyListComponent implements OnInit {
     });
   }
 
-  deleteItem(i: number, obj: SurveyList) {
+  startEdit(i: number, obj: Survey) {
+    const dialogRef = this.dialogService.open(AddMgQuestionComponent, {
+      data: obj
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 1) {
+        this.load();
+      }
+    });
+  }
+
+  deleteItem(i: number, obj: Survey) {
     this._spinner.show();
-    this._surveyService.deleteSurvey({ id: obj._id }).subscribe((res) => {
+    this._questionService.deleteQuestion({ id: obj._id }).subscribe((res) => {
       this._spinner.hide();
       this.load();
     }, (err) => {

@@ -26,11 +26,11 @@ export class SidenavComponent implements OnInit {
   }
 
   getURL(router: any) {
-    let route = 'survey';
-    if (router == 'survey-list') {
-      route = 'survey-list';
+    let route = 'survey-list';
+    if (router == 'survey') {
+      route = 'survey';
     } else {
-      route = 'survey'
+      route = 'survey-list'
     }
     return route;
   }

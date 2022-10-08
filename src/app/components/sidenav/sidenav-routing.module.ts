@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AgentComponent } from 'src/app/pages/agent/agent.component';
+import { AnswerComponent } from 'src/app/pages/answer/answer.component';
 import { HomeComponent } from 'src/app/pages/home/home.component';
+import { MgQuestionComponent } from 'src/app/pages/mg-question/mg-question.component';
 import { ProductComponent } from 'src/app/pages/product/product.component';
 import { QuestionComponent } from 'src/app/pages/question/question.component';
 import { StartSurveyComponent } from 'src/app/pages/survey/start-survey/start-survey.component';
@@ -22,6 +24,8 @@ const routes: Routes = [
       { path: 'question', component: QuestionComponent, canActivate: [AuthGuard] },
       { path: 'survey', component: StartSurveyComponent, canActivate: [AuthGuard] },
       { path: 'survey-list', component: SurveyListComponent, canActivate: [AuthGuard] },
+      { path: 'answer', component: AnswerComponent, canActivate: [AuthGuard] },
+      { path: 'mq-question', component: MgQuestionComponent, canActivate: [AuthGuard] },
 
     ]
   },

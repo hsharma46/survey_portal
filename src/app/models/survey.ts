@@ -33,9 +33,10 @@ export class SurveyAnswer {
 }
 
 export class SurveyComplete {
+    _id: string = "";
     userDetails: RegistrationDetails;
     surveyDetails: SurveyAnswer[];
-    agentId: string;
+    userId: string;
 }
 
 export class SurveyList {

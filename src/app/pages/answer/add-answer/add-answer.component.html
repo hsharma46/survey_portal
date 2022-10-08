@@ -1,0 +1,78 @@
+<div class="container">
+    <h3 mat-dialog-title>Add Answer</h3>
+
+    <form class="mat-dialog-content" [formGroup]="surveyForm" (ngSubmit)="onSubmit()" autocomplete="off">
+
+        <div class="survey-options">
+
+            <div formArrayName="surveyAnswers" class="poll-options">
+
+                <ol class="list-style">
+                    <li *ngFor="let answerCtrl of surveyForm.get('surveyAnswers')['controls']; let i = index">
+                        <div [formGroupName]="i">
+                            <div>
+                                <mat-form-field class="full-width">
+                                    <textarea formControlName="answerTitle" matInput cdkTextareaAutosize
+                                        #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
+                                        placeholder="Answer title" [required]="true"></textarea>
+                                </mat-form-field>
+                                
+                                <div formGroupName="answerGroup" [ngSwitch]="selectedOption[i]">
+                                    
+                                    <div *ngSwitchCase="'Multi choice'">
+                                        <div *ngIf="answerCtrl.controls.answerGroup.controls.options">
+                                            <ul class="answer-type" formArrayName="options">
+                                                <li
+                                                    *ngFor="let optionCtrl of answerCtrl.controls.answerGroup.controls.options.controls let j = index">
+                                                    <div [formGroupName]="j">
+
+                                                        <mat-form-field>
+                                                            <input formControlName="optionText" matInput
+                                                                placeholder="option text" maxlength="250"
+                                                                [required]="true">
+                                                            <button matSuffix mat-icon-button aria-label="Clear"
+                                                                *ngIf="j>=2" (click)="removeOption(i,j)" color="warn">
+                                                                X
+                                                            </button>
+                                                        </mat-form-field>
+
+
+
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <button mat-raised-button type="button" (click)="addOption(i)"
+                                                class="mat-sm-button add-option-btn" color="accent"> Add option</button>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                            <button *ngIf="i>0" mat-mini-fab color="warn" type="button" (click)="onRemoveAnswer(i)"
+                                class="poll-remove-btn">
+                                X
+                            </button>
+                        </div>
+                    </li>
+                </ol>
+                <div fxLayout="row" fxLayoutAlign="end">
+                    <button type="button" color="primary" mat-raised-button (click)="onAddAnswer()">
+                        Add Answer
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+
+    </form>
+
+    <div mat-dialog-actions>
+        <button mat-raised-button color="accent" type="submit" (click)="confirmAdd()"
+            [disabled]="!surveyForm.valid">Save</button>
+        <button mat-raised-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+    </div>
+</div>

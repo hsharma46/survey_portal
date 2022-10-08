@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ServerResponse } from 'src/app/models/server';
 import { SurveyComplete } from 'src/app/models/survey';
@@ -14,7 +15,8 @@ export class SurveyViewComponent implements OnInit {
   surveyDatasource: any = null;
   constructor(
     private _spinner: NgxSpinnerService,
-    private _surveyService: SurveyService
+    private _surveyService: SurveyService,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
   ngOnInit(): void {
@@ -23,12 +25,14 @@ export class SurveyViewComponent implements OnInit {
 
   load() {
     this._spinner.show();
-    this._surveyService.getSurveyDetails().subscribe((res: ServerResponse) => {
+    this._surveyService.getSurveyDetails({ _id: this.data._id }).subscribe((res: ServerResponse) => {
       this._spinner.hide();
-      if (res.result.length > 0) {
-        this.surveyDatasource = res.result[0];
+      if (!!res.result) {
+        this.surveyDatasource = res.result;
         console.log(this.surveyDatasource);
       }
+    }, () => {
+      this._spinner.hide();
     });
   }
 

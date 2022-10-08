@@ -20,6 +20,10 @@ import { AddQuestionComponent } from 'src/app/pages/question/add-question/add-qu
 import { UserRegistrationComponent } from 'src/app/pages/survey/user-registration/user-registration.component';
 import { SurveyListComponent } from 'src/app/pages/survey/survey-list/survey-list.component';
 import { SurveyViewComponent } from 'src/app/pages/survey/survey-view/survey-view.component';
+import { AnswerComponent } from 'src/app/pages/answer/answer.component';
+import { AddAnswerComponent } from 'src/app/pages/answer/add-answer/add-answer.component';
+import { MgQuestionComponent } from 'src/app/pages/mg-question/mg-question.component';
+import { AddMgQuestionComponent } from 'src/app/pages/mg-question/add-mg-question/add-mg-question.component';
 
 
 @NgModule({
@@ -38,7 +42,11 @@ import { SurveyViewComponent } from 'src/app/pages/survey/survey-view/survey-vie
     SurveyListComponent,
     SurveyViewComponent,
     QuestionsLoopDirective,
-    UserRegistrationComponent
+    UserRegistrationComponent,
+    AnswerComponent,
+    AddAnswerComponent,
+    MgQuestionComponent,
+    AddMgQuestionComponent
   ],
   imports: [
     CommonModule,

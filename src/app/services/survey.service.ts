@@ -18,21 +18,15 @@ export class SurveyService {
   }
 
   getSurvey(params = {}): Observable<any> {
-    //return this.http.get(`${AppConstant.API_URL}survey/getall`, { params });
-    return this.http.get('assets/data.json'); 
+    return this.http.get(`${AppConstant.API_URL}survey/getall`, { params });
   }
-  getSurveyDetails(params = {}): Observable<any> {
-    //return this.http.get(`${AppConstant.API_URL}survey/getall`, { params });
-    return this.http.get('assets/survey.json'); 
+  getSurveyDetails(params: any): Observable<any> {
+    const id = params['_id'];
+    return this.http.get(`${AppConstant.API_URL}survey/getdetailsbyid/${id}`);
   }
 
   createSurvey(body = {}): Observable<any> {
-    //return this.http.post(`${AppConstant.API_URL}agent/create`, body);
-    return new Observable((observer)=>{
-      AppStorage.setItem('surveyQuestions',body);
-      observer.next(true);
-    })
-
+    return this.http.post(`${AppConstant.API_URL}agent/create`, body);
   }
 
 

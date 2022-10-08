@@ -44,7 +44,7 @@ export class StartSurveyComponent implements OnInit {
     let surveyComplete = new SurveyComplete();
     surveyComplete.userDetails = AppStorage.getItem('SuerveyRegistrationDetails');
     surveyComplete.surveyDetails = this.questions;
-    surveyComplete.agentId = AppStorage.getItem('UserData')._id;
+    surveyComplete.userId = AppStorage.getItem('UserData')._id;
     console.log(surveyComplete);
     this._spinner.show();
     this._surveyService.createSurvey(surveyComplete).subscribe((res: ServerResponse) => {
