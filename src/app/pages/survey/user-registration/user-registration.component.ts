@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-registration',
@@ -10,7 +11,7 @@ export class UserRegistrationComponent implements OnInit {
 
   registrationForm: any;
   @Output('registrationFormSubmit') registrationFormSubmit = new EventEmitter<any>();
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, public _router: Router) { }
 
   ngOnInit(): void {
     this.registrationForm = this.fb.group({
@@ -33,5 +34,19 @@ export class UserRegistrationComponent implements OnInit {
       this.registrationFormSubmit.emit(this.registrationForm.value)
       console.log(this.registrationForm.value);
     }
+  }
+
+
+  getURL() {
+    const router = this._router.url.split('/')[2]
+    let route = '';
+    if (router == 'survey') {
+      route = 'Survey';
+    }
+
+    if (router == 'add-feedback') {
+      route = 'Feedback';
+    }
+    return route;
   }
 }

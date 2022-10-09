@@ -79,7 +79,7 @@ export class AddMgQuestionComponent implements OnInit {
       mqQuestions.forEach((element: any) => {
         let data = new MQQuestion();
         data['timestamp'] = getTimestampInSeconds();
-        data.answerType = element.answerType;
+        data.answer_id = element.answerType;
         data.questionTitle = element.questionTitle;
         data._id = this.data._id;
         delete data._id;
@@ -88,6 +88,8 @@ export class AddMgQuestionComponent implements OnInit {
       this._mqquestionService.updateQuestion({ id: this.data._id }, req[0]).subscribe((res: ServerResponse) => {
         this._spinner.hide();
         this.dialogRef.close(1);
+      }, () => {
+        this._spinner.hide();
       });
     } else {
       this._spinner.show();
@@ -95,13 +97,15 @@ export class AddMgQuestionComponent implements OnInit {
       mqQuestions.forEach((element: any) => {
         let data = new MQQuestion();
         data['timestamp'] = getTimestampInSeconds();
-        data.answerType = element.answerType;
+        data.answer_id = element.answerType;
         data.questionTitle = element.questionTitle;
         req.push(data);
       });
       this._mqquestionService.createQuestion(req).subscribe((res: ServerResponse) => {
         this._spinner.hide();
         this.dialogRef.close(1);
+      }, () => {
+        this._spinner.hide();
       });
     }
   }

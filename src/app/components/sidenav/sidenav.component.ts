@@ -12,7 +12,6 @@ export class SidenavComponent implements OnInit {
   constructor(public _router: Router, private appShared: AppShared) { }
 
   ngOnInit(): void {
-    this._router.url
     console.log(this._router.url.split('/')[2]);
   }
 
@@ -37,8 +36,8 @@ export class SidenavComponent implements OnInit {
     }
 
     if (action == 'feedback') {
-      if (router == 'add-survey') {
-        route = 'add-survey';
+      if (router == 'add-feedback') {
+        route = 'add-feedback';
       } else {
         route = 'feedback'
       }

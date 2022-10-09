@@ -1,6 +1,6 @@
 export class MQQuestion {
     _id?: string = '';
     questionTitle: string = '';
-    answerType: string = '';
+    answer_id: string = '';
     timestamp: any;
 }
