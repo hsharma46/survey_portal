@@ -26,7 +26,7 @@ export class SurveyService {
   }
 
   createSurvey(body = {}): Observable<any> {
-    return this.http.post(`${AppConstant.API_URL}agent/create`, body);
+    return this.http.post(`${AppConstant.API_URL}survey/create`, body);
   }
 
 
