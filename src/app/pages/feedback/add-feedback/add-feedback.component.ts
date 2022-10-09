@@ -42,7 +42,7 @@ export class AddFeedbackComponent implements OnInit {
   submit() {
     let feedbackComplete = new FeedbackComplete();
     feedbackComplete.userDetails = AppStorage.getItem('SuerveyRegistrationDetails');
-    feedbackComplete.surveyDetails = this.questions;
+    feedbackComplete.feedbackDetails = this.questions;
     feedbackComplete.userId = AppStorage.getItem('UserData')._id;
     console.log(feedbackComplete);
     this._spinner.show();
