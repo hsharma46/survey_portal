@@ -24,6 +24,9 @@ import { AnswerComponent } from 'src/app/pages/answer/answer.component';
 import { AddAnswerComponent } from 'src/app/pages/answer/add-answer/add-answer.component';
 import { MgQuestionComponent } from 'src/app/pages/mg-question/mg-question.component';
 import { AddMgQuestionComponent } from 'src/app/pages/mg-question/add-mg-question/add-mg-question.component';
+import { FeedbackComponent } from 'src/app/pages/feedback/feedback.component';
+import { FeedbackViewComponent } from 'src/app/pages/feedback/feedback-view/feedback-view.component';
+import { AddFeedbackComponent } from 'src/app/pages/feedback/add-feedback/add-feedback.component';
 
 
 @NgModule({
@@ -46,7 +49,10 @@ import { AddMgQuestionComponent } from 'src/app/pages/mg-question/add-mg-questio
     AnswerComponent,
     AddAnswerComponent,
     MgQuestionComponent,
-    AddMgQuestionComponent
+    AddMgQuestionComponent,
+    FeedbackComponent,
+    FeedbackViewComponent,
+    AddFeedbackComponent
   ],
   imports: [
     CommonModule,

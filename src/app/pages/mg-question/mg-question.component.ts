@@ -5,7 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ServerResponse } from 'src/app/models/server';
 import { Survey } from 'src/app/models/survey';
-import { QuestionService } from 'src/app/services/question.service';
+import { MQQuestionService } from 'src/app/services/mq-question.service';
 import { AddMgQuestionComponent } from './add-mg-question/add-mg-question.component';
 
 @Component({
@@ -26,7 +26,7 @@ export class MgQuestionComponent implements OnInit {
   @ViewChild('filter') filter: ElementRef;
 
   constructor(public dialogService: MatDialog, private _spinner: NgxSpinnerService,
-    private _questionService: QuestionService
+    private _mqquestionService: MQQuestionService
   ) { }
 
   ngOnInit() {
@@ -36,11 +36,13 @@ export class MgQuestionComponent implements OnInit {
   load() {
     this._spinner.show();
     this.dataSource = [];
-    this._questionService.getQuestion().subscribe((res: ServerResponse) => {
+    this._mqquestionService.getQuestion().subscribe((res: ServerResponse) => {
       this._spinner.hide();
       if (res.result.length > 0) {
         this.dataSource = res.result;
       }
+    }, () => {
+      this._spinner.hide();
     });
   }
 
@@ -68,7 +70,7 @@ export class MgQuestionComponent implements OnInit {
 
   deleteItem(i: number, obj: Survey) {
     this._spinner.show();
-    this._questionService.deleteQuestion({ id: obj._id }).subscribe((res) => {
+    this._mqquestionService.deleteQuestion({ id: obj._id }).subscribe((res) => {
       this._spinner.hide();
       this.load();
     }, (err) => {

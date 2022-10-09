@@ -58,7 +58,8 @@
                         </div>
                     </li>
                 </ol>
-                <div fxLayout="row" fxLayoutAlign="end">
+                
+                <div fxLayout="row" fxLayoutAlign="end" *ngIf="data._id==''">
                     <button type="button" color="primary" mat-raised-button (click)="onAddQuestion()">
                         Add Question
                     </button>

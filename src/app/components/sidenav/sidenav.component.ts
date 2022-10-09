@@ -25,13 +25,26 @@ export class SidenavComponent implements OnInit {
     })
   }
 
-  getURL(router: any) {
-    let route = 'survey-list';
-    if (router == 'survey') {
-      route = 'survey';
-    } else {
-      route = 'survey-list'
+  getURL(action: any) {
+    const router = this._router.url.split('/')[2]
+    let route = '';
+    if (action == 'survey') {
+      if (router == 'survey') {
+        route = 'survey';
+      } else {
+        route = 'survey-list'
+      }
     }
+
+    if (action == 'feedback') {
+      if (router == 'add-survey') {
+        route = 'add-survey';
+      } else {
+        route = 'feedback'
+      }
+    }
+
+
     return route;
   }
 

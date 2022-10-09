@@ -1,14 +1,14 @@
 <div class="container">
-    <h3 mat-dialog-title>Add Question</h3>
+    <h3 mat-dialog-title>Add MQ Question</h3>
 
     <form class="mat-dialog-content" [formGroup]="surveyForm" (ngSubmit)="onSubmit()" autocomplete="off">
 
         <div class="survey-options">
 
-            <div formArrayName="surveyQuestions" class="poll-options">
+            <div formArrayName="mqQuestions" class="poll-options">
 
                 <ol class="list-style">
-                    <li *ngFor="let questionCtrl of surveyForm.get('surveyQuestions')['controls']; let i = index">
+                    <li *ngFor="let questionCtrl of surveyForm.get('mqQuestions')['controls']; let i = index">
                         <div [formGroupName]="i">
                             <div>
                                 <mat-form-field class="full-width">
@@ -18,7 +18,7 @@
                                 </mat-form-field>
 
                                 <mat-form-field class="full-width">
-                                    <mat-select formControlName="questionType" placeholder="Question type"
+                                    <mat-select formControlName="answerType" placeholder="Answer type"
                                         ng-model="myVar" [(value)]="selectedOption[i]"
                                         (selectionChange)="onSeletQuestionType(selectedOption[i], i)" [required]="true">
                                         <mat-option *ngFor="let answer of answerDataSource" [value]="answer._id">
@@ -26,8 +26,6 @@
                                         </mat-option>
                                     </mat-select>
                                 </mat-form-field>
-
-                                
 
                             </div>
                             <button *ngIf="i>0" mat-mini-fab color="warn" type="button" (click)="onRemoveQuestion(i)"
@@ -39,7 +37,7 @@
                 </ol>
                 <div fxLayout="row" fxLayoutAlign="space-evenly stretch">
                     <button type="button" color="primary" mat-raised-button (click)="onAddQuestion()">
-                        Add Question
+                        Add MQ Question
                     </button>
                     <button type="button" color="primary" mat-raised-button (click)="openAddDialog()">
                         Add Answer

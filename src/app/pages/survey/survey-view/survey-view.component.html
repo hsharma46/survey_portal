@@ -1,41 +1,55 @@
-<mat-dialog-content class="mat-survey-view">
-    <ng-container *ngIf="surveyDatasource!==null">
-        <mat-list role="list">
-            <div mat-subheader>Genral Details</div>
-            <mat-list-item role="listitem">
-                Name :<span class="product-spacer-1"></span><span
-                    style="color: green;">{{surveyDatasource.userDetails.firstName}}
-                    {{surveyDatasource.userDetails.lastName}}</span>
-            </mat-list-item>
-            <mat-list-item role="listitem">
-                Email :<span class="product-spacer-1"></span><span
-                    style="color: green;">{{surveyDatasource.userDetails.userEmail}}</span>
-            </mat-list-item>
-            <mat-list-item role="listitem">
-                Address :<span class="product-spacer-1"></span><span
-                    style="color: green;">{{surveyDatasource.userDetails.address}}</span>
-            </mat-list-item>
-            <mat-list-item role="listitem">
-                City :<span class="product-spacer-1"></span><span
-                    style="color: green;">{{surveyDatasource.userDetails.city}}</span>
-            </mat-list-item>
-            <mat-list-item role="listitem">
-                State :<span class="product-spacer-1"></span><span
-                    style="color: green;">{{surveyDatasource.userDetails.state}}</span>
-            </mat-list-item>
-            <mat-divider></mat-divider>
-            <div mat-subheader>Question & Awnser</div>
-            <mat-list-item role="listitem" *ngFor="let question of surveyDatasource.surveyDetails">
-                {{question.question}} :
-                <span class="product-spacer"></span>
-                <span style="color: green;">{{question.answer}}</span>
+<div class="container">
+    <mat-dialog-content class="mat-survey-view">
+        <ng-container *ngIf="surveyDatasource!==null">
+            <mat-list role="list">
+                <div mat-subheader>Genral Details</div>
+                <mat-list-item role="listitem">
+                    Name :<span class="product-spacer-1"></span><span
+                        style="color: green;">{{surveyDatasource.userDetails.firstName}}
+                        {{surveyDatasource.userDetails.lastName}}</span>
+                </mat-list-item>
+                <mat-list-item role="listitem">
+                    Email :<span class="product-spacer-1"></span><span
+                        style="color: green;">{{surveyDatasource.userDetails.userEmail}}</span>
+                </mat-list-item>
+                <mat-list-item role="listitem">
+                    Address :<span class="product-spacer-1"></span><span
+                        style="color: green;">{{surveyDatasource.userDetails.address}}</span>
+                </mat-list-item>
+                <mat-list-item role="listitem">
+                    City :<span class="product-spacer-1"></span><span
+                        style="color: green;">{{surveyDatasource.userDetails.city}}</span>
+                </mat-list-item>
+                <mat-list-item role="listitem">
+                    State :<span class="product-spacer-1"></span><span
+                        style="color: green;">{{surveyDatasource.userDetails.state}}</span>
+                </mat-list-item>
                 <mat-divider></mat-divider>
-            </mat-list-item>
-        </mat-list>
-    </ng-container>
 
-</mat-dialog-content>
+                <div mat-subheader>Question & Awnser</div>
+                <table>
+                    <ng-container *ngFor="let question of surveyDatasource.surveyDetails;let i=index;">
+                        <tr>
+                            <td>
+                                <span style="color: red;"> Q.{{i+1}}</span>
+                            </td>
+                            <td> {{question.question}} {{question.question}} {{question.question}} {{question.question}}
+                            </td>
 
-<mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close>Close</button>
-</mat-dialog-actions>
+                        </tr>
+                        <tr>
+                            <td><span style="color: green;">Ans.</span></td>
+                            <td>{{question.answer}}</td>
+                        </tr>
+                    </ng-container>
+                </table>
+            </mat-list>
+
+        </ng-container>
+
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Close</button>
+    </mat-dialog-actions>
+</div>

@@ -54,7 +54,7 @@ export class SurveyListComponent implements OnInit {
   startEdit(i: number, obj: SurveyList) {
     const dialogRef = this.dialogService.open(SurveyViewComponent, {
       data: obj,
-      width: '800px'
+      //width: '800px'
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
