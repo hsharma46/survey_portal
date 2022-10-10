@@ -29,7 +29,6 @@ export class MQQuestionService {
     return this.http.put(`${AppConstant.API_URL}mqquestion/update/${id}`, body);
   }
 
-
   deleteQuestion(params: any): Observable<any> {
     const id = params['id'];
     return this.http.delete(`${AppConstant.API_URL}mqquestion/delete/${id}`);
