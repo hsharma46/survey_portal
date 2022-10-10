@@ -18,6 +18,6 @@ export class FeedbackAnswer {
 export class FeedbackComplete {
     _id: string = "";
     userDetails: RegistrationDetails;
-    surveyDetails: FeedbackAnswer[];
+    feedbackDetails: FeedbackAnswer[];
     userId: string;
 }

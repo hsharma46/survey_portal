@@ -62,7 +62,7 @@ export class AddMgQuestionComponent implements OnInit {
 
   setQuestionGroup(index: any, question: any) {
     const questionTitle = question.questionTitle;
-    const answerType = question.answerType;
+    const answerType = question.answerId;
     this.surveyForm.controls.mqQuestions['controls'][index].controls.questionTitle.value = questionTitle;
     this.surveyForm.controls.mqQuestions['controls'][index].controls.answerType.value = answerType;
   }
@@ -79,7 +79,7 @@ export class AddMgQuestionComponent implements OnInit {
       mqQuestions.forEach((element: any) => {
         let data = new MQQuestion();
         data['timestamp'] = getTimestampInSeconds();
-        data.answer_id = element.answerType;
+        data.answerId = element.answerType;
         data.questionTitle = element.questionTitle;
         data._id = this.data._id;
         delete data._id;
@@ -97,7 +97,7 @@ export class AddMgQuestionComponent implements OnInit {
       mqQuestions.forEach((element: any) => {
         let data = new MQQuestion();
         data['timestamp'] = getTimestampInSeconds();
-        data.answer_id = element.answerType;
+        data.answerId = element.answerType;
         data.questionTitle = element.questionTitle;
         req.push(data);
       });

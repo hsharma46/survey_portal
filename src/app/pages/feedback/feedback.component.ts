@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ServerResponse } from 'src/app/models/server';
 import { SurveyList } from 'src/app/models/survey';
-import { SurveyService } from 'src/app/services/survey.service';
+import { FeedbackService } from 'src/app/services/feedback.service';
 import { FeedbackViewComponent } from './feedback-view/feedback-view.component';
 
 
@@ -28,7 +28,7 @@ export class FeedbackComponent implements OnInit {
   @ViewChild('filter') filter: ElementRef;
 
   constructor(public dialogService: MatDialog, private _spinner: NgxSpinnerService,
-    private _surveyService: SurveyService, private router: Router
+    private _feedbackService: FeedbackService, private router: Router
   ) { }
 
   ngOnInit() {
@@ -38,7 +38,7 @@ export class FeedbackComponent implements OnInit {
   load() {
     this._spinner.show();
     this.dataSource = [];
-    this._surveyService.getSurvey().subscribe((res: ServerResponse) => {
+    this._feedbackService.getFeedback().subscribe((res: ServerResponse) => {
       this._spinner.hide();
       if (res.result.length > 0) {
         this.dataSource = res.result;
@@ -66,7 +66,7 @@ export class FeedbackComponent implements OnInit {
 
   deleteItem(i: number, obj: SurveyList) {
     this._spinner.show();
-    this._surveyService.deleteSurvey({ id: obj._id }).subscribe((res) => {
+    this._feedbackService.deleteFeedback({ id: obj._id }).subscribe((res) => {
       this._spinner.hide();
       this.load();
     }, (err) => {
