@@ -1,1 +1,53 @@
-<p>feedback-view works!</p>
+<div class="container">
+    <mat-dialog-content class="mat-survey-view">
+        <ng-container *ngIf="feedbackDatasource!==null">
+            <mat-list role="list">
+                <div mat-subheader>Genral Details</div>
+                <mat-list-item role="listitem">
+                    Name :<span class="product-spacer-1"></span><span
+                        style="color: green;">{{feedbackDatasource.userDetails.firstName}}
+                        {{feedbackDatasource.userDetails.lastName}}</span>
+                </mat-list-item>
+                <mat-list-item role="listitem">
+                    Email :<span class="product-spacer-1"></span><span
+                        style="color: green;">{{feedbackDatasource.userDetails.userEmail}}</span>
+                </mat-list-item>
+                <mat-list-item role="listitem">
+                    Address :<span class="product-spacer-1"></span><span
+                        style="color: green;">{{feedbackDatasource.userDetails.address}}</span>
+                </mat-list-item>
+                <mat-list-item role="listitem">
+                    City :<span class="product-spacer-1"></span><span
+                        style="color: green;">{{feedbackDatasource.userDetails.city}}</span>
+                </mat-list-item>
+                <mat-list-item role="listitem">
+                    State :<span class="product-spacer-1"></span><span
+                        style="color: green;">{{feedbackDatasource.userDetails.state}}</span>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+
+                <div mat-subheader>Question & Awnser</div>
+                <table>
+                    <ng-container *ngFor="let question of feedbackDatasource.surveyDetails;let i=index;">
+                        <tr>
+                            <td>
+                                <span style="color: red;"> Q.{{i+1}}</span>
+                            </td>
+                            <td> {{question.question}}</td>
+                        </tr>
+                        <tr>
+                            <td><span style="color: green;">Ans.</span></td>
+                            <td>{{question.answer}}</td>
+                        </tr>
+                    </ng-container>
+                </table>
+            </mat-list>
+
+        </ng-container>
+
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Close</button>
+    </mat-dialog-actions>
+</div>

@@ -38,7 +38,6 @@ export class AddMgQuestionComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.data);
     this.load();
     this.initForm();
   }

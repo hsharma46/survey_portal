@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    min-width: 550px;
+}
+
+.container>* {
+    width: 100%;
+}
+
+.mat-list-item {
+    font-size: 13px !important;
+    height: auto !important;
+}
+
+td {
+    vertical-align: baseline;
+}
