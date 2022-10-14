@@ -43,4 +43,5 @@ export class SurveyList {
     _id: string = '';
     user: string = '';
     agent: string = "";
+    code:string="";
 }

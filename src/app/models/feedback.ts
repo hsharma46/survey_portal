@@ -21,3 +21,10 @@ export class FeedbackComplete {
     feedbackDetails: FeedbackAnswer[];
     userId: string;
 }
+
+export class FeedbackList {
+    _id: string = '';
+    user: string = '';
+    agent: string = "";
+    code:string="";
+}

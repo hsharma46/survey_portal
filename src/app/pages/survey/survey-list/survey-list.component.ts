@@ -16,7 +16,7 @@ import { SurveyViewComponent } from '../survey-view/survey-view.component';
 })
 export class SurveyListComponent implements OnInit {
 
-  displayedColumns = ['srn', 'user', 'agent', 'actions'];
+  displayedColumns = ['srn','code', 'user', 'agent', 'actions'];
   dataSource: SurveyList[] = [];
   index: number = 0;
   id: number = 0;

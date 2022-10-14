@@ -4,6 +4,10 @@
             <mat-list role="list">
                 <div mat-subheader>Genral Details</div>
                 <mat-list-item role="listitem">
+                    Code :<span class="product-spacer-1"></span><span
+                        style="color: green;">{{feedbackDatasource.userDetails.code}}</span>
+                </mat-list-item>
+                <mat-list-item role="listitem">
                     Name :<span class="product-spacer-1"></span><span
                         style="color: green;">{{feedbackDatasource.userDetails.firstName}}
                         {{feedbackDatasource.userDetails.lastName}}</span>
@@ -28,7 +32,7 @@
 
                 <div mat-subheader>Question & Awnser</div>
                 <table>
-                    <ng-container *ngFor="let question of feedbackDatasource.surveyDetails;let i=index;">
+                    <ng-container *ngFor="let question of feedbackDatasource.feedbackDetails;let i=index;">
                         <tr>
                             <td>
                                 <span style="color: red;"> Q.{{i+1}}</span>

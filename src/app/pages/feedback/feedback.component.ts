@@ -4,8 +4,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { FeedbackList } from 'src/app/models/feedback';
 import { ServerResponse } from 'src/app/models/server';
-import { SurveyList } from 'src/app/models/survey';
 import { FeedbackService } from 'src/app/services/feedback.service';
 import { FeedbackViewComponent } from './feedback-view/feedback-view.component';
 
@@ -17,8 +17,8 @@ import { FeedbackViewComponent } from './feedback-view/feedback-view.component';
 })
 export class FeedbackComponent implements OnInit {
 
-  displayedColumns = ['srn', 'user', 'agent', 'actions'];
-  dataSource: SurveyList[] = [];
+  displayedColumns = ['srn','code', 'user', 'agent', 'actions'];
+  dataSource: FeedbackList[] = [];
   index: number = 0;
   id: number = 0;
 
@@ -52,7 +52,7 @@ export class FeedbackComponent implements OnInit {
     this.router.navigateByUrl('user/add-feedback');
   }
 
-  startEdit(i: number, obj: SurveyList) {
+  startEdit(i: number, obj: FeedbackList) {
     const dialogRef = this.dialogService.open(FeedbackViewComponent, {
       data: obj,
       //width: '800px'
@@ -64,7 +64,7 @@ export class FeedbackComponent implements OnInit {
     });
   }
 
-  deleteItem(i: number, obj: SurveyList) {
+  deleteItem(i: number, obj: FeedbackList) {
     this._spinner.show();
     this._feedbackService.deleteFeedback({ id: obj._id }).subscribe((res) => {
       this._spinner.hide();
