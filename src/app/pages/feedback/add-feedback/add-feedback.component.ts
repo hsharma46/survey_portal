@@ -32,7 +32,7 @@ export class AddFeedbackComponent implements OnInit {
   }
 
   load() {
-   
+
     let httpRequest = [];
     const req1 = this._mqquestionService.getQuestion();
     const req2 = this._answerService.getAnswer();
@@ -77,7 +77,7 @@ export class AddFeedbackComponent implements OnInit {
         question: item.questionTitle,
         options: item.questionGroup.options,
         type: 'radio',
-        answer: ''
+        answer: { optionText: '', optionValue: '' }
       })
     })
     return transformQuestion;

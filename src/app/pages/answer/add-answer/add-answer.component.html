@@ -16,29 +16,36 @@
                                         #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
                                         placeholder="Answer title" [required]="true"></textarea>
                                 </mat-form-field>
-                                
+
                                 <div formGroupName="answerGroup" [ngSwitch]="selectedOption[i]">
-                                    
+
                                     <div *ngSwitchCase="'Multi choice'">
                                         <div *ngIf="answerCtrl.controls.answerGroup.controls.options">
                                             <ul class="answer-type" formArrayName="options">
                                                 <li
                                                     *ngFor="let optionCtrl of answerCtrl.controls.answerGroup.controls.options.controls let j = index">
-                                                    <div [formGroupName]="j">
+                                                    <mat-card [formGroupName]="j" style="margin: 10px;">
+
 
                                                         <mat-form-field>
                                                             <input formControlName="optionText" matInput
-                                                                placeholder="option text" maxlength="250"
+                                                                placeholder="Option Text" maxlength="250"
                                                                 [required]="true">
-                                                            <button matSuffix mat-icon-button aria-label="Clear"
-                                                                *ngIf="j>=2" (click)="removeOption(i,j)" color="warn">
-                                                                X
-                                                            </button>
+                                                        </mat-form-field>
+
+                                                        <mat-form-field>
+                                                            <input formControlName="optionValue" matInput
+                                                                placeholder="Option Value" maxlength="250"
+                                                                [required]="true">
                                                         </mat-form-field>
 
 
-
-                                                    </div>
+                                                        <button mat-mini-fab *ngIf="j>=2" (click)="removeOption(i,j)"
+                                                            style="position: absolute;top: -12px;right: -29px;" color="warn"
+                                                            aria-label="close" sty>
+                                                            <mat-icon>close</mat-icon>
+                                                        </button>
+                                                    </mat-card>
                                                 </li>
                                             </ul>
                                             <button mat-raised-button type="button" (click)="addOption(i)"

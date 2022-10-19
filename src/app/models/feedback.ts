@@ -12,7 +12,10 @@ export class FeedbackAnswer {
     "question": string;
     "options": [];
     "type": string;
-    "answer": string;
+    "answer": {
+        "optionText": string;
+        "optionValue": string;
+    };
 }
 
 export class FeedbackComplete {
@@ -26,5 +29,5 @@ export class FeedbackList {
     _id: string = '';
     user: string = '';
     agent: string = "";
-    code:string="";
+    code: string = "";
 }

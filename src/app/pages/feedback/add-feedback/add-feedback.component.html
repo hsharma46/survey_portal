@@ -1,9 +1,9 @@
 <mat-toolbar color="accent">
     <span>Feedback</span>
     <span class="product-spacer"></span>
-    
+
     <button mat-button (click)="onBack()">
-        <mat-icon>list</mat-icon>  Feedback List
+        <mat-icon>list</mat-icon> Feedback List
     </button>
 </mat-toolbar>
 
@@ -21,10 +21,20 @@
         <mat-card-content>
             <mat-radio-group *ngIf="question.type === 'radio'" class="example-radio-group" name="favoriteSeason"
                 [(ngModel)]="question.answer">
-                <mat-radio-button class="example-radio-button" *ngFor="let option of question.options"
-                    [value]="option.optionText">
-                    {{option.optionText}}
-                </mat-radio-button>
+
+
+                <div class="table-feedback">
+                    <div class="tr-feedback" *ngFor="let option of question.options">
+                        <div class="td-feedback">
+                            <mat-radio-button class="example-radio-button" [value]="option">
+                            </mat-radio-button>
+                        </div>
+                        <div class="td-feedback">{{option.optionText}}</div>
+                        <div class="td-feedback"> {{option.optionValue}}</div>
+                    </div>
+                </div>
+
+
             </mat-radio-group>
         </mat-card-content>
         <mat-card-actions>
@@ -43,7 +53,8 @@
             <mat-list-item role="listitem" *ngFor="let question of questions">
                 {{question.question}} :
                 <span class="product-spacer"></span>
-                <span style="color: green;">{{question.answer}}</span>
+                <span style="color: green;" *ngIf="question.answer.optionText!==''">{{question.answer.optionText}} :
+                    {{question.answer.optionValue}}</span>
                 <mat-divider></mat-divider>
             </mat-list-item>
 

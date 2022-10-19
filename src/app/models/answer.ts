@@ -8,4 +8,5 @@ export class Answer {
 export class Option {
     _id: number;
     optionText: string;
+    optionValue: string;
 }

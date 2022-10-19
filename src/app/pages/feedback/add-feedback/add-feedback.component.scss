@@ -1,25 +1,41 @@
 /** No CSS for this example */
 .example-radio-group {
-    display: inline-flex;
-    flex-direction: column;
-    margin-left: 10px;
-  }
-  
-  .example-radio-button {
-    margin: 5px;
-  }
-  
-  .example-selected-value {
-    margin: 15px 0;
-  }
-  
-  .example-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-  }
-  
-  .example-full-width {
-    width: 100%;
-    margin-left: 15px;
-  }
+  display: inline-flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.example-radio-button {
+  margin: 5px;
+}
+
+.example-selected-value {
+  margin: 15px 0;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+  margin-left: 15px;
+}
+
+div.table-feedback {
+  //border: 1px solid black;
+  display: table;
+}
+
+div.tr-feedback {
+  //border: 1px solid black;
+  display: table-row;
+}
+
+div.td-feedback {
+  border: 1px solid black;
+  display: table-cell;
+  padding: 8px;
+}

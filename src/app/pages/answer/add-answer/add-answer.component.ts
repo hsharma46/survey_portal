@@ -55,6 +55,7 @@ export class AddAnswerComponent implements OnInit {
     answerGroup.forEach((element: any, i: any) => {
       this.addOption(index);
       this.surveyForm.controls.surveyAnswers['controls'][index].controls.answerGroup.controls.options.controls[i].controls.optionText.value = element.optionText;
+      this.surveyForm.controls.surveyAnswers['controls'][index].controls.answerGroup.controls.options.controls[i].controls.optionValue.value = element.optionValue;
     });
   }
 
@@ -170,6 +171,7 @@ export class AddAnswerComponent implements OnInit {
   addOption(index: any) {
     const optionGroup = new FormGroup({
       'optionText': new FormControl('', Validators.required),
+      'optionValue': new FormControl('', Validators.required),
     });
     (<FormArray>this.surveyForm.controls.surveyAnswers['controls'][index].controls.answerGroup.controls.options).push(optionGroup);
   }
